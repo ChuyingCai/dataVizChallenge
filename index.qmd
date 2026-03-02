@@ -223,26 +223,28 @@ Let's explore different visual approaches:
 avgDF_2010_sorted = avgDF_2010.sort_values('totalRuns', ascending=True)
 
 # Create figure with subplots to compare approaches
-fig, axes = plt.subplots(2, 2, figsize=(8, 6))
+fig, axes = plt.subplots(2, 2, figsize=(8, 9))
 
 # Approach 1: Scatter plot (not ideal for categorical data)
 axes[0,0].scatter(avgDF_2010_sorted.home, avgDF_2010_sorted.totalRuns)
 axes[0,0].set_title("Approach 1: Scatter Plot")
 axes[0,0].set_xlabel("Stadium")
 axes[0,0].set_ylabel("Average Runs")
+axes[0,0].tick_params(axis='x', labelsize=9)
 
 # Approach 2: Horizontal bar chart (better for categorical data)
 axes[0,1].barh(avgDF_2010_sorted.home, avgDF_2010_sorted.totalRuns)
 axes[0,1].set_title("Approach 2: Horizontal Bar Chart")
 axes[0,1].set_xlabel("Average Runs")
 axes[0,1].set_ylabel("Stadium")
+axes[0,1].tick_params(axis='y', labelsize=9)
 
 # Approach 3: Vertical bar chart
 axes[1,0].bar(avgDF_2010_sorted.home, avgDF_2010_sorted.totalRuns)
 axes[1,0].set_title("Approach 3: Vertical Bar Chart")
 axes[1,0].set_xlabel("Stadium")
 axes[1,0].set_ylabel("Average Runs")
-axes[1,0].tick_params(axis='x', rotation=45)
+axes[1,0].tick_params(axis='x', rotation=45, labelsize=9)
 
 # Approach 4: Highlight Colorado
 colorado_colors = ["darkorchid" if stadium == "COL" else "lightgrey" 
@@ -251,6 +253,7 @@ axes[1,1].barh(avgDF_2010_sorted.home, avgDF_2010_sorted.totalRuns, color=colora
 axes[1,1].set_title("Approach 4: Highlight Colorado")
 axes[1,1].set_xlabel("Average Runs")
 axes[1,1].set_ylabel("Stadium")
+axes[1,1].tick_params(axis='y', labelsize=9)
 
 plt.tight_layout()
 plt.show()
@@ -317,6 +320,9 @@ ax.annotate(f"COL: {colorado_runs:.2f} runs/game",
 
 # Set x-axis to start from 0 for better comparison
 ax.set_xlim(0, max(avgDF_2010_sorted.totalRuns) * 1.1)
+
+# Smaller font for stadium (y-axis) tick labels
+ax.tick_params(axis='y', labelsize=9)
 
 # Add grid for easier reading
 ax.grid(True, alpha=0.3)
