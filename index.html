@@ -339,7 +339,7 @@ First few rows of 2010 data:
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/stage-3-mapping-exploration-output-1.png" id="stage-3-mapping-exploration" width="758" height="855" class="figure-img"></p>
+<p><img src="index_files/figure-html/stage-3-mapping-exploration-output-1.png" id="stage-3-mapping-exploration" width="758" height="854" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -509,15 +509,15 @@ Colorado is 20.8% above league average</code></pre>
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend (shared)</span></span>
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>colorado_patch <span class="op">=</span> plt.Rectangle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">1</span>, <span class="dv">1</span>, color<span class="op">=</span><span class="st">"darkorchid"</span>, label<span class="op">=</span><span class="st">"Colorado (COL)"</span>)</span>
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>other_patch <span class="op">=</span> plt.Rectangle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">1</span>, <span class="dv">1</span>, color<span class="op">=</span><span class="st">"lightgrey"</span>, label<span class="op">=</span><span class="st">"Other Stadiums"</span>)</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>fig.legend(handles<span class="op">=</span>[colorado_patch, other_patch], loc<span class="op">=</span><span class="st">"upper center"</span>, ncol<span class="op">=</span><span class="dv">2</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>fig.legend(handles<span class="op">=</span>[colorado_patch, other_patch], loc<span class="op">=</span><span class="st">"upper center"</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.02</span>), ncol<span class="op">=</span><span class="dv">2</span>, frameon<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"Stadium Run-Friendliness: 2010 vs 2021"</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.02</span>)</span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>plt.tight_layout(rect<span class="op">=</span>[<span class="dv">0</span>, <span class="fl">0.03</span>, <span class="dv">1</span>, <span class="fl">0.97</span>])</span>
 <span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/two-facet-visualization-output-1.png" id="two-facet-visualization" width="1142" height="690" class="figure-img"></p>
+<p><img src="index_files/figure-html/two-facet-visualization-output-1.png" id="two-facet-visualization" width="1142" height="747" class="figure-img"></p>
 </figure>
 </div>
 </div>

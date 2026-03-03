@@ -388,10 +388,10 @@ axes[1].grid(True, alpha=0.3)
 # Legend (shared)
 colorado_patch = plt.Rectangle((0, 0), 1, 1, color="darkorchid", label="Colorado (COL)")
 other_patch = plt.Rectangle((0, 0), 1, 1, color="lightgrey", label="Other Stadiums")
-fig.legend(handles=[colorado_patch, other_patch], loc="upper center", ncol=2, frameon=True)
+fig.legend(handles=[colorado_patch, other_patch], loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=2, frameon=True)
 
 fig.suptitle("Stadium Run-Friendliness: 2010 vs 2021", fontsize=14, fontweight="bold", y=1.02)
-plt.tight_layout()
+plt.tight_layout(rect=[0, 0.03, 1, 0.97])
 plt.show()
 
 ```
