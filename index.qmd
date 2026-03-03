@@ -229,6 +229,7 @@ plt.show()
 - A horizontal bar chart is better than a scatter plot for this data because there are too many stadiums in the x-axis. A scatter plot would be hard to read and match the y-axis with the correct stadium. But a horizontal bar chart is easier to match to the x-axis with the correct number. It also allows us to compare the runs per stadium more easily.
 - I would choose a horizontal bar chart when the x-axis is numerical and the y-axis is categorical.
 
+
 **Question 2: Aesthetic Mappings**
 - What does the color highlighting accomplish in Approach 4?
 - How does position (x/y) compare to color for encoding data?
@@ -277,11 +278,10 @@ other_bar = plt.Rectangle((0,0),1,1, color="lightgrey", label="Other Stadiums")
 ax.legend(handles=[colorado_bar, other_bar], loc='lower right', frameon=True)
 
 # Add annotation for Colorado
-colorado_index = avgDF_2010_sorted[avgDF_2010_sorted.home == "COL"].index[0]
-colorado_runs = avgDF_2010_sorted[avgDF_2010_sorted.home == "COL"]["totalRuns"].iloc[0]
-ax.annotate(f"COL: {colorado_runs:.2f} runs/game", 
-            xy=(colorado_runs, colorado_index), 
-            xytext=(colorado_runs + 0.5, colorado_index),
+colorado_runs = avgDF_2010_sorted.loc[avgDF_2010_sorted.home == "COL", "totalRuns"].iloc[0]
+ax.annotate(f"COL: {colorado_runs:.2f} runs/game",
+            xy=(colorado_runs, "COL"),
+            xytext=(colorado_runs + 0.5, "COL"),
             arrowprops=dict(arrowstyle='->', color='darkorchid', lw=2),
             fontsize=10, fontweight='bold', color='darkorchid')
 
@@ -314,6 +314,9 @@ print(f"Colorado is {((colorado_runs / avgDF_2010_sorted.totalRuns.mean()) - 1) 
 **Answer 1:**
 - The visualization makes a color array for the Colorado stadium to help audience to identify the target data more easily. It is suitable for a business presentation because it save the audience's time and call the attention quickly.
 - The annotation on the visualization is helpful to give the audience the exact number of average runs per game for the Colorado stadium. But the placement of the annotation is not ideal because it is not exactly on the target data. 
+- I would fix the placement of the annotation by using the bar position instead of the index.
+
+
 :::
 
 
@@ -347,9 +350,62 @@ comparison_data = pd.merge(
 **Question 1: Using Subplot Layout**
 - Create a two-facet visualization that shows the total runs for 2010 and 2021 for each stadium in a single figure.  Highlight Colorado in the visualization.
 
+**Answer 1:**
+- I created a two-facet visualization that shows the total runs for 2010 and 2021 for each stadium in a single figure. I highlighted the Colorado stadium in the visualization.
+
+```{python}
+#| label: two-facet-visualization
+#| echo: true
+
+# Two-facet visualization: 2010 and 2021 total runs by stadium, Colorado highlighted
+fig, axes = plt.subplots(1, 2, figsize=(12, 7))
+
+# Sort stadiums by runs for each year (for consistent ordering within each facet)
+sort_2010 = avgDF_2010.sort_values("totalRuns", ascending=True)
+sort_2021 = avgDF_2021.sort_values("totalRuns", ascending=True)
+
+def bar_colors(stadiums, highlight="COL"):
+    return ["darkorchid" if s == highlight else "lightgrey" for s in stadiums]
+
+# Facet 1: 2010
+colors_2010 = bar_colors(sort_2010.home)
+axes[0].barh(sort_2010.home, sort_2010.totalRuns, color=colors_2010)
+axes[0].set_title("2010: Total Runs per Game by Stadium", fontsize=12, fontweight="bold")
+axes[0].set_xlabel("Average Total Runs")
+axes[0].set_xlim(0, sort_2010.totalRuns.max() * 1.1)
+axes[0].tick_params(axis="y", labelsize=9)
+axes[0].grid(True, alpha=0.3)
+
+# Facet 2: 2021
+colors_2021 = bar_colors(sort_2021.home)
+axes[1].barh(sort_2021.home, sort_2021.totalRuns, color=colors_2021)
+axes[1].set_title("2021: Total Runs per Game by Stadium", fontsize=12, fontweight="bold")
+axes[1].set_xlabel("Average Total Runs")
+axes[1].set_xlim(0, sort_2021.totalRuns.max() * 1.1)
+axes[1].tick_params(axis="y", labelsize=9)
+axes[1].grid(True, alpha=0.3)
+
+# Legend (shared)
+colorado_patch = plt.Rectangle((0, 0), 1, 1, color="darkorchid", label="Colorado (COL)")
+other_patch = plt.Rectangle((0, 0), 1, 1, color="lightgrey", label="Other Stadiums")
+fig.legend(handles=[colorado_patch, other_patch], loc="upper center", ncol=2, frameon=True)
+
+fig.suptitle("Stadium Run-Friendliness: 2010 vs 2021", fontsize=14, fontweight="bold", y=1.02)
+plt.tight_layout()
+plt.show()
+
+```
+
+
+
 **Question 2: Explanation of the Visualization**
 - Ask AI To Add A Paragraph Here To Explain The Visualization
 - Does AI come to the right conclusion?  If not, why not?
+
+**Answer 2:**
+- **Explanation of the visualization:** The figure uses a two-facet, object-oriented layout: the left panel shows average total runs per game by stadium for the 2010 season, and the right panel shows the same metric for 2021. In each panel, stadiums are sorted by runs (ascending), so the most run-friendly parks appear at the top. Colorado (COL) is highlighted in purple in both panels so it can be compared across years and against other stadiums. From this view, we can see whether Coors Field is among the highest-scoring venues in each year and whether its relative position changed between 2010 and 2021. The shared legend and parallel structure make it easy to compare the two seasons and draw conclusions about stadium run-friendliness over time.
+- I think the AI comes to the right conclusion because it mentioned that the Colorado stadium is readable and easy to compare two years.
+
 :::
 
 ## Student Analysis Section: Mastering Object-Oriented Matplotlib {#student-analysis-section}
@@ -379,24 +435,3 @@ comparison_data = pd.merge(
 - Show mastery of object-oriented matplotlib
 - Do not `echo` the code that creates the visualizations
 
-## Grading and Submission
-
-**Submission Checklist:**
-
-- [ ] Fork repository to your GitHub account
-- [ ] Clone locally using Cursor (or VS Code)
-- [ ] Complete discussion questions
-- [ ] Render document to HTML successfully
-- [ ] Push HTML files to your repository
-- [ ] Enable GitHub Pages
-- [ ] Verify site at `https://[your-username].github.io/dataVizChallenge/`
-
-**Grading:**
-
-| Grade | Requirements |
-|-------|--------------|
-| Minimum | Discussion questions for at least 3 of 4 stages; working GitHub Pages site |
-| 85% | All 4 stages with comprehensive, well-reasoned responses |
-| 100% | All discussion questions plus professional visualizations demonstrating mastery |
-
-**Report Quality:** Professional writing, concise analysis, clear demonstration of object-oriented matplotlib.
