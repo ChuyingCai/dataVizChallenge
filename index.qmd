@@ -32,58 +32,6 @@ This challenge pushes boundaries intentionally. You'll tackle problems that norm
 **The new reality:** The four stages of competence are Ignorance → Awareness → Learning → Mastery. AI lets us produce Mastery-level work while operating primarily in the Awareness stage. I focus on awareness training, you leverage AI for execution, and together we create outputs that used to require years of dedicated study.
 :::
 
-## Getting Started: Repository Setup
-
-::: {.callout-important}
-## 📁 Getting Started
-
-**Step 1:** Fork and clone this challenge repository: `https://github.com/flyaflya/dataVizChallenge.git`
-
-- View the original challenge page: <https://flyaflya.github.io/dataVizChallenge/>
-- Fork it to your GitHub account, then clone it from your GitHub account to your local machine
-
-**Step 2:** Set up your Python environment
-
-- **Recommended:** Use your existing virtual environment from Tech Setup Challenge Part 2
-  - Press `Ctrl+Shift+P` → "Python: Select Interpreter"
-  - Navigate to your existing virtual environment (e.g., `your-previous-project/venv/Scripts/python.exe`)
-  - Install additional packages: `pip install pandas numpy matplotlib seaborn`
-- **Alternative:** Create a new virtual environment following [Quarto documentation](https://quarto.org/docs/projects/virtual-environments.html)
-
-**Step 3:** You're ready to start! The data loading code and starter code for the visualizations are already provided in this file.
-
-**Note:** This challenge uses the same `index.qmd` file you're reading right now - you'll edit it to complete your analysis.
-
-**Before publishing:** Remove or comment out the "Getting Started" and "Grading and Submission" sections from your final GitHub Pages version so your published page reads as a cohesive Coors Field analysis story.
-:::
-
-::: {.callout-warning}
-## ⚠️ Cloud Storage Warning
-
-**Avoid using Google Drive, OneDrive, or other cloud storage for Python projects!** These services can cause issues with package installations and virtual environment corruption. Keep your Python projects in a local folder like `C:\Users\YourName\Documents\` instead.
-:::
-
-::: {.callout-warning}
-## 💾 Important: Save Your Work Frequently!
-
-**Before you start:** Make sure to commit your work often using the Source Control panel in Cursor (Ctrl+Shift+G or Cmd+Shift+G). This prevents the AI from overwriting your progress and ensures you don't lose your work.
-
-**Commit after each major step:**
-
-- After completing each stage section
-- After adding your visualizations
-- After completing your advanced object-oriented techniques
-- Before asking the AI for help with new code
-
-**How to commit:**
-
-1. Open Source Control panel (Ctrl+Shift+G)
-2. Stage your changes (+ button)
-3. Write a descriptive commit message
-4. Click the checkmark to commit
-
-*Remember: Frequent commits are your safety net!*
-:::
 
 ## The Four Stages of Data Visualization
 
@@ -160,6 +108,10 @@ Our purpose is to investigate whether Coors Field in Denver, Colorado is truly t
 
 **Question 1: Hypothesis Formation**
 - Why might high altitude affect baseball performance?  Is Coors Field affected by high altitude?
+
+**Answer 1: **
+- High altitude can affect baseball performance. In high altitude, the air is thinner than lower altitude, which means the athletes have less oxygen to breathe during the game. This can affect the athletes' performance. 
+- The Coors Field is situated 5,200 to 5,280 feet above sea level, so it is affected by high altitude.
 :::
 
 ## Stage 2: Curation of Content
@@ -204,6 +156,10 @@ print(avgDF_2021.head())
 
 **Question 1: Data Aggregation Strategy**
 - How many games are in the dataset? Why do we aggregate individual games into stadium averages before we start the visualization process?
+
+**Answer 1:**
+- There are 2430 games in the 2010 dataset and 2429 games in the 2021 dataset since each row represents a game. 
+- We aggregate individual games into stadium averages before we start the visualization process to get a better understanding of the data because there are too many games to visualize all of them at once. But if we aggregate the data, we can make a more meaningful visualization by decreasing the number to visualize. In addition, our purpose is to investigate whether Coors Field is the most run-friendly ballpark so we better focus on the stadiums that are most relevant to our purpose.
 :::
 
 ## Stage 3: Structuring of Visual Mappings
@@ -269,9 +225,17 @@ plt.show()
 - Why is a horizontal bar chart better than a scatter plot for this data?
 - When would you choose a vertical bar chart over horizontal?
 
+**Answer 1:**
+- A horizontal bar chart is better than a scatter plot for this data because there are too many stadiums in the x-axis. A scatter plot would be hard to read and match the y-axis with the correct stadium. But a horizontal bar chart is easier to match to the x-axis with the correct number. It also allows us to compare the runs per stadium more easily.
+- I would choose a horizontal bar chart when the x-axis is numerical and the y-axis is categorical.
+
 **Question 2: Aesthetic Mappings**
 - What does the color highlighting accomplish in Approach 4?
 - How does position (x/y) compare to color for encoding data?
+
+**Answer 2:**
+- The color highlighting the Colorado stadium in Approach 4 helps us to identify target data more easily.
+- Color is better for human to recognize the data than position because color is more stand out and easier to remember. Other than that, position is related to the data and requires more effort to find the target data.
 
 :::
 
@@ -347,6 +311,9 @@ print(f"Colorado is {((colorado_runs / avgDF_2010_sorted.totalRuns.mean()) - 1) 
 - What elements make this visualization suitable for a business presentation?
 - Is the annotation on the visualization helpful?  Can you fix its placement?
 
+**Answer 1:**
+- The visualization makes a color array for the Colorado stadium to help audience to identify the target data more easily. It is suitable for a business presentation because it save the audience's time and call the attention quickly.
+- The annotation on the visualization is helpful to give the audience the exact number of average runs per game for the Colorado stadium. But the placement of the annotation is not ideal because it is not exactly on the target data. 
 :::
 
 
